@@ -18,23 +18,19 @@ class RegisterSerializer(serializers.ModelSerializer):
         return user
 
 class LoginSerializer(serializers.Serializer):
-    email = serializers.EmailField()
+    username = serializers.CharField()
     password = serializers.CharField()
     
     def validate(self, data):
-        email = data.get('email')
+        username = data.get('username')
         password = data.get('password')
         
-        if email and password:
-            try:
-                user = User.objects.get(email=email)
-                user = authenticate(username=user.username, password=password)
-                if not user:
-                    raise serializers.ValidationError('Invalid credentials')
-            except User.DoesNotExist:
+        if username and password:
+            user = authenticate(username=username, password=password)
+            if not user:
                 raise serializers.ValidationError('Invalid credentials')
         else:
-            raise serializers.ValidationError('Must include email and password')
+            raise serializers.ValidationError('Must include username and password')
         
         data['user'] = user
         return data

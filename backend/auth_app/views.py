@@ -11,6 +11,7 @@ from .serializers import RegisterSerializer, LoginSerializer, ForgotPasswordSeri
 @permission_classes([AllowAny])
 def register(request):
     serializer = RegisterSerializer(data=request.data)
+    # print(request.data)
     if serializer.is_valid():
         user = serializer.save()
         refresh = RefreshToken.for_user(user)
@@ -99,3 +100,20 @@ def logout(request):
             'message': 'Logout failed',
             'error': 'Invalid token'
         }, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET'])
+def get_users(request):
+    users = User.objects.all()
+    user_data = []
+    for user in users:
+        user_data.append({
+            'id': user.id,
+            'username': user.username,
+            'email': user.email,
+            'status': 'Available',
+            'experience': '5 years'
+        })
+    return Response({
+        'success': True,
+        'users': user_data
+    }, status=status.HTTP_200_OK)
