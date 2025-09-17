@@ -24,6 +24,7 @@ INSTALLED_APPS = [
     'drone_app',
     'fleet_app',
     'report_app',
+    'ai_chatbot',
 ]
 
 MIDDLEWARE = [

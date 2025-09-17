@@ -9,4 +9,5 @@ urlpatterns = [
     path('', health_check, name='health_check'),
     path('admin/', admin.site.urls),
     path('api/', include('api.urls')),
+    path('api/chatbot/', include('ai_chatbot.urls')),
 ]
