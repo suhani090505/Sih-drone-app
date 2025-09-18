@@ -12,7 +12,7 @@ class ReportsScreen extends StatefulWidget {
 }
 
 class _ReportsScreenState extends State<ReportsScreen> {
-  String dateFilter = 'month';
+  String dateFilter = 'January';
   String historyFilter = 'monthly';
   String? selectedZone;
   Map<String, dynamic> fleetStats = {};
@@ -53,7 +53,8 @@ class _ReportsScreenState extends State<ReportsScreen> {
       },
       {
         'title': 'Avg Delivery Time',
-        'value': '${(fleetStats['avgResponseTime'] ?? 0).toStringAsFixed(0)} min',
+        'value':
+            '${(fleetStats['avgResponseTime'] ?? 0).toStringAsFixed(0)} min',
         'subtitle': 'Response Time',
         'icon': Icons.schedule,
         'change': '-3.2 min',
@@ -80,7 +81,8 @@ class _ReportsScreenState extends State<ReportsScreen> {
 
   int _getFailedMissions() {
     if (fleetStats['monthlyData'] == null) return 0;
-    return (fleetStats['monthlyData'] as List).fold<int>(0, (sum, month) => sum + ((month['unsuccessful_deliveries'] ?? 0) as int));
+    return (fleetStats['monthlyData'] as List).fold<int>(0,
+        (sum, month) => sum + ((month['unsuccessful_deliveries'] ?? 0) as int));
   }
 
   final disasterZones = [
@@ -102,7 +104,8 @@ class _ReportsScreenState extends State<ReportsScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: widget.isDarkMode ? const Color(0xFF121212) : const Color(0xFFF8F9FA),
+      color:
+          widget.isDarkMode ? const Color(0xFF121212) : const Color(0xFFF8F9FA),
       child: SingleChildScrollView(
         child: Column(
           children: [
@@ -132,24 +135,48 @@ class _ReportsScreenState extends State<ReportsScreen> {
                   ),
                   Row(
                     children: [
-                      const Icon(Icons.filter_list, color: Colors.white, size: 16),
+                      const Icon(Icons.filter_list,
+                          color: Colors.white, size: 16),
                       const SizedBox(width: 8),
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 12, vertical: 6),
                         decoration: BoxDecoration(
                           color: Colors.white.withValues(alpha: 0.1),
                           borderRadius: BorderRadius.circular(6),
-                          border: Border.all(color: Colors.white.withValues(alpha: 0.2)),
+                          border: Border.all(
+                              color: Colors.white.withValues(alpha: 0.2)),
                         ),
                         child: DropdownButton<String>(
                           value: dateFilter,
-                          dropdownColor: widget.isDarkMode ? const Color(0xFF1E1E1E) : null,
+                          dropdownColor: widget.isDarkMode
+                              ? const Color(0xFF1E1E1E)
+                              : null,
                           underline: const SizedBox(),
-                          style: const TextStyle(color: Colors.white, fontSize: 14),
-                          items: ['day', 'week', 'month', 'custom']
-                              .map((e) => DropdownMenuItem(value: e, child: Text(e)))
+                          style: TextStyle(
+                              color: widget.isDarkMode
+                                  ? Colors.white
+                                  : Colors.black,
+                              fontSize: 14),
+                          items: [
+                            'January',
+                            'February',
+                            'March',
+                            'April',
+                            'May',
+                            'June',
+                            'July',
+                            'August',
+                            'September',
+                            'October',
+                            'November',
+                            'December'
+                          ]
+                              .map((e) =>
+                                  DropdownMenuItem(value: e, child: Text(e)))
                               .toList(),
-                          onChanged: (value) => setState(() => dateFilter = value!),
+                          onChanged: (value) =>
+                              setState(() => dateFilter = value!),
                         ),
                       ),
                     ],
@@ -157,7 +184,7 @@ class _ReportsScreenState extends State<ReportsScreen> {
                 ],
               ),
             ),
-            
+
             Padding(
               padding: const EdgeInsets.all(16),
               child: Column(
@@ -173,16 +200,17 @@ class _ReportsScreenState extends State<ReportsScreen> {
                       childAspectRatio: 1.2,
                       mainAxisSpacing: 12,
                       crossAxisSpacing: 12,
-                      children: kpiCards.map((kpi) => _buildKPICard(kpi)).toList(),
+                      children:
+                          kpiCards.map((kpi) => _buildKPICard(kpi)).toList(),
                     ),
-                  
+
                   const SizedBox(height: 24),
-                  
+
                   // Charts Section
                   _buildDeliveryChart(),
-                  
+
                   const SizedBox(height: 24),
-                  
+
                   // Drone Utilization and Response Time
                   Row(
                     children: [
@@ -191,14 +219,14 @@ class _ReportsScreenState extends State<ReportsScreen> {
                       Expanded(child: _buildResponseTimeChart()),
                     ],
                   ),
-                  
+
                   const SizedBox(height: 24),
-                  
+
                   // Disaster Zones Map
-                  _buildDisasterZonesMap(),
-                  
+                  // _buildDisasterZonesMap(),
+
                   const SizedBox(height: 24),
-                  
+
                   // Mission History and Insights
                   Row(
                     children: [
@@ -223,7 +251,9 @@ class _ReportsScreenState extends State<ReportsScreen> {
         color: widget.isDarkMode ? const Color(0xFF1E1E1E) : Colors.white,
         borderRadius: BorderRadius.circular(8),
         border: Border.all(
-          color: widget.isDarkMode ? const Color(0xFF3A3A3A) : const Color(0xFFE5E7EB),
+          color: widget.isDarkMode
+              ? const Color(0xFF3A3A3A)
+              : const Color(0xFFE5E7EB),
         ),
         boxShadow: [
           BoxShadow(
@@ -242,28 +272,28 @@ class _ReportsScreenState extends State<ReportsScreen> {
               Container(
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                  color: widget.isDarkMode 
-                      ? const Color(0xFFBB86FC).withValues(alpha: 0.2) 
+                  color: widget.isDarkMode
+                      ? const Color(0xFFBB86FC).withValues(alpha: 0.2)
                       : const Color(0xFF3B82F6).withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Icon(
                   kpi['icon'] as IconData,
                   size: 20,
-                  color: widget.isDarkMode 
-                      ? const Color(0xFFBB86FC) 
+                  color: widget.isDarkMode
+                      ? const Color(0xFFBB86FC)
                       : const Color(0xFF3B82F6),
                 ),
               ),
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                 decoration: BoxDecoration(
-                  color: kpi['isPositive'] 
-                      ? (widget.isDarkMode 
-                          ? const Color(0xFF03DAC6).withValues(alpha: 0.2) 
+                  color: kpi['isPositive']
+                      ? (widget.isDarkMode
+                          ? const Color(0xFF03DAC6).withValues(alpha: 0.2)
                           : const Color(0xFF10B981).withValues(alpha: 0.1))
-                      : (widget.isDarkMode 
-                          ? const Color(0xFFCF6679).withValues(alpha: 0.2) 
+                      : (widget.isDarkMode
+                          ? const Color(0xFFCF6679).withValues(alpha: 0.2)
                           : const Color(0xFFEF4444).withValues(alpha: 0.1)),
                   borderRadius: BorderRadius.circular(12),
                 ),
@@ -272,12 +302,12 @@ class _ReportsScreenState extends State<ReportsScreen> {
                   style: TextStyle(
                     fontSize: 10,
                     fontWeight: FontWeight.w600,
-                    color: kpi['isPositive'] 
-                        ? (widget.isDarkMode 
-                            ? const Color(0xFF03DAC6) 
+                    color: kpi['isPositive']
+                        ? (widget.isDarkMode
+                            ? const Color(0xFF03DAC6)
                             : const Color(0xFF10B981))
-                        : (widget.isDarkMode 
-                            ? const Color(0xFFCF6679) 
+                        : (widget.isDarkMode
+                            ? const Color(0xFFCF6679)
                             : const Color(0xFFEF4444)),
                   ),
                 ),
@@ -297,7 +327,9 @@ class _ReportsScreenState extends State<ReportsScreen> {
             kpi['subtitle'] as String,
             style: TextStyle(
               fontSize: 12,
-              color: widget.isDarkMode ? const Color(0xFFB0B0B0) : const Color(0xFF6B7280),
+              color: widget.isDarkMode
+                  ? const Color(0xFFB0B0B0)
+                  : const Color(0xFF6B7280),
             ),
           ),
         ],
@@ -312,7 +344,9 @@ class _ReportsScreenState extends State<ReportsScreen> {
         color: widget.isDarkMode ? const Color(0xFF1E1E1E) : Colors.white,
         borderRadius: BorderRadius.circular(8),
         border: Border.all(
-          color: widget.isDarkMode ? const Color(0xFF3A3A3A) : const Color(0xFFE5E7EB),
+          color: widget.isDarkMode
+              ? const Color(0xFF3A3A3A)
+              : const Color(0xFFE5E7EB),
         ),
         boxShadow: [
           BoxShadow(
@@ -330,7 +364,9 @@ class _ReportsScreenState extends State<ReportsScreen> {
               Icon(
                 Icons.trending_up,
                 size: 20,
-                color: widget.isDarkMode ? const Color(0xFF03DAC6) : const Color(0xFF10B981),
+                color: widget.isDarkMode
+                    ? const Color(0xFF03DAC6)
+                    : const Color(0xFF10B981),
               ),
               const SizedBox(width: 8),
               Text(
@@ -338,7 +374,9 @@ class _ReportsScreenState extends State<ReportsScreen> {
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
-                  color: widget.isDarkMode ? Colors.white : const Color(0xFF0F172A),
+                  color: widget.isDarkMode
+                      ? Colors.white
+                      : const Color(0xFF0F172A),
                 ),
               ),
             ],
@@ -362,7 +400,9 @@ class _ReportsScreenState extends State<ReportsScreen> {
         color: widget.isDarkMode ? const Color(0xFF1E1E1E) : Colors.white,
         borderRadius: BorderRadius.circular(8),
         border: Border.all(
-          color: widget.isDarkMode ? const Color(0xFF3A3A3A) : const Color(0xFFE5E7EB),
+          color: widget.isDarkMode
+              ? const Color(0xFF3A3A3A)
+              : const Color(0xFFE5E7EB),
         ),
         boxShadow: [
           BoxShadow(
@@ -380,7 +420,9 @@ class _ReportsScreenState extends State<ReportsScreen> {
               Icon(
                 Icons.donut_small,
                 size: 20,
-                color: widget.isDarkMode ? const Color(0xFFBB86FC) : const Color(0xFF3B82F6),
+                color: widget.isDarkMode
+                    ? const Color(0xFFBB86FC)
+                    : const Color(0xFF3B82F6),
               ),
               const SizedBox(width: 8),
               Text(
@@ -388,7 +430,9 @@ class _ReportsScreenState extends State<ReportsScreen> {
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
-                  color: widget.isDarkMode ? Colors.white : const Color(0xFF0F172A),
+                  color: widget.isDarkMode
+                      ? Colors.white
+                      : const Color(0xFF0F172A),
                 ),
               ),
             ],
@@ -412,7 +456,9 @@ class _ReportsScreenState extends State<ReportsScreen> {
         color: widget.isDarkMode ? const Color(0xFF1E1E1E) : Colors.white,
         borderRadius: BorderRadius.circular(8),
         border: Border.all(
-          color: widget.isDarkMode ? const Color(0xFF3A3A3A) : const Color(0xFFE5E7EB),
+          color: widget.isDarkMode
+              ? const Color(0xFF3A3A3A)
+              : const Color(0xFFE5E7EB),
         ),
         boxShadow: [
           BoxShadow(
@@ -430,7 +476,9 @@ class _ReportsScreenState extends State<ReportsScreen> {
               Icon(
                 Icons.schedule,
                 size: 20,
-                color: widget.isDarkMode ? const Color(0xFF03DAC6) : const Color(0xFFF59E0B),
+                color: widget.isDarkMode
+                    ? const Color(0xFF03DAC6)
+                    : const Color(0xFFF59E0B),
               ),
               const SizedBox(width: 8),
               Text(
@@ -438,7 +486,9 @@ class _ReportsScreenState extends State<ReportsScreen> {
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
-                  color: widget.isDarkMode ? Colors.white : const Color(0xFF0F172A),
+                  color: widget.isDarkMode
+                      ? Colors.white
+                      : const Color(0xFF0F172A),
                 ),
               ),
             ],
@@ -455,120 +505,120 @@ class _ReportsScreenState extends State<ReportsScreen> {
     );
   }
 
-  Widget _buildDisasterZonesMap() {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: widget.isDarkMode ? const Color(0xFF1E1E1E) : Colors.white,
-        borderRadius: BorderRadius.circular(8),
-        border: Border.all(
-          color: widget.isDarkMode ? const Color(0xFF3A3A3A) : const Color(0xFFE5E7EB),
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.1),
-            blurRadius: 8,
-            offset: const Offset(0, 2),
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Icon(
-                Icons.location_on,
-                size: 20,
-                color: widget.isDarkMode ? const Color(0xFFCF6679) : const Color(0xFFEF4444),
-              ),
-              const SizedBox(width: 8),
-              Text(
-                'Disaster Zones Served',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                  color: widget.isDarkMode ? Colors.white : const Color(0xFF0F172A),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 16),
-          Container(
-            height: 200,
-            decoration: BoxDecoration(
-              color: widget.isDarkMode ? const Color(0xFF2C2C2C) : const Color(0xFFF1F5F9),
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: const Center(
-              child: Text(
-                'Interactive Map Placeholder\nShowing disaster zones with delivery counts',
-                textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.grey),
-              ),
-            ),
-          ),
-          const SizedBox(height: 16),
-          GridView.count(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            crossAxisCount: 2,
-            childAspectRatio: 3,
-            mainAxisSpacing: 8,
-            crossAxisSpacing: 8,
-            children: disasterZones.take(4).map((zone) => Container(
-              padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                color: widget.isDarkMode ? const Color(0xFF2C2C2C) : const Color(0xFFF8FAFC),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Container(
-                        width: 12,
-                        height: 12,
-                        decoration: BoxDecoration(
-                          color: zone['status'] == 'critical' ? Colors.red :
-                                 zone['status'] == 'high' ? Colors.orange :
-                                 zone['status'] == 'medium' ? Colors.yellow :
-                                 Colors.green,
-                          shape: BoxShape.circle,
-                        ),
-                      ),
-                      const SizedBox(width: 8),
-                      Expanded(
-                        child: Text(
-                          zone['name'] as String,
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500,
-                            color: widget.isDarkMode ? const Color(0xFFE0E0E0) : const Color(0xFF374151),
-                          ),
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    '${zone['deliveries']} deliveries',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: widget.isDarkMode ? const Color(0xFFBB86FC) : const Color(0xFF3B82F6),
-                    ),
-                  ),
-                ],
-              ),
-            )).toList(),
-          ),
-        ],
-      ),
-    );
-  }
+  // Widget _buildDisasterZonesMap() {
+  //   return Container(
+  //     padding: const EdgeInsets.all(16),
+  //     decoration: BoxDecoration(
+  //       color: widget.isDarkMode ? const Color(0xFF1E1E1E) : Colors.white,
+  //       borderRadius: BorderRadius.circular(8),
+  //       border: Border.all(
+  //         color: widget.isDarkMode ? const Color(0xFF3A3A3A) : const Color(0xFFE5E7EB),
+  //       ),
+  //       boxShadow: [
+  //         BoxShadow(
+  //           color: Colors.black.withValues(alpha: 0.1),
+  //           blurRadius: 8,
+  //           offset: const Offset(0, 2),
+  //         ),
+  //       ],
+  //     ),
+  //     child: Column(
+  //       crossAxisAlignment: CrossAxisAlignment.start,
+  //       children: [
+  //         Row(
+  //           children: [
+  //             Icon(
+  //               Icons.location_on,
+  //               size: 20,
+  //               color: widget.isDarkMode ? const Color(0xFFCF6679) : const Color(0xFFEF4444),
+  //             ),
+  //             const SizedBox(width: 8),
+  //             Text(
+  //               'Disaster Zones Served',
+  //               style: TextStyle(
+  //                 fontSize: 16,
+  //                 fontWeight: FontWeight.w600,
+  //                 color: widget.isDarkMode ? Colors.white : const Color(0xFF0F172A),
+  //               ),
+  //             ),
+  //           ],
+  //         ),
+  //         const SizedBox(height: 16),
+  //         Container(
+  //           height: 200,
+  //           decoration: BoxDecoration(
+  //             color: widget.isDarkMode ? const Color(0xFF2C2C2C) : const Color(0xFFF1F5F9),
+  //             borderRadius: BorderRadius.circular(8),
+  //           ),
+  //           child: const Center(
+  //             child: Text(
+  //               'Interactive Map Placeholder\nShowing disaster zones with delivery counts',
+  //               textAlign: TextAlign.center,
+  //               style: TextStyle(color: Colors.grey),
+  //             ),
+  //           ),
+  //         ),
+  //         const SizedBox(height: 16),
+  //         GridView.count(
+  //           shrinkWrap: true,
+  //           physics: const NeverScrollableScrollPhysics(),
+  //           crossAxisCount: 2,
+  //           childAspectRatio: 3,
+  //           mainAxisSpacing: 8,
+  //           crossAxisSpacing: 8,
+  //           children: disasterZones.take(4).map((zone) => Container(
+  //             padding: const EdgeInsets.all(12),
+  //             decoration: BoxDecoration(
+  //               color: widget.isDarkMode ? const Color(0xFF2C2C2C) : const Color(0xFFF8FAFC),
+  //               borderRadius: BorderRadius.circular(8),
+  //             ),
+  //             child: Column(
+  //               crossAxisAlignment: CrossAxisAlignment.start,
+  //               children: [
+  //                 Row(
+  //                   children: [
+  //                     Container(
+  //                       width: 12,
+  //                       height: 12,
+  //                       decoration: BoxDecoration(
+  //                         color: zone['status'] == 'critical' ? Colors.red :
+  //                                zone['status'] == 'high' ? Colors.orange :
+  //                                zone['status'] == 'medium' ? Colors.yellow :
+  //                                Colors.green,
+  //                         shape: BoxShape.circle,
+  //                       ),
+  //                     ),
+  //                     const SizedBox(width: 8),
+  //                     Expanded(
+  //                       child: Text(
+  //                         zone['name'] as String,
+  //                         style: TextStyle(
+  //                           fontSize: 12,
+  //                           fontWeight: FontWeight.w500,
+  //                           color: widget.isDarkMode ? const Color(0xFFE0E0E0) : const Color(0xFF374151),
+  //                         ),
+  //                         overflow: TextOverflow.ellipsis,
+  //                       ),
+  //                     ),
+  //                   ],
+  //                 ),
+  //                 const SizedBox(height: 4),
+  //                 Text(
+  //                   '${zone['deliveries']} deliveries',
+  //                   style: TextStyle(
+  //                     fontSize: 16,
+  //                     fontWeight: FontWeight.bold,
+  //                     color: widget.isDarkMode ? const Color(0xFFBB86FC) : const Color(0xFF3B82F6),
+  //                   ),
+  //                 ),
+  //               ],
+  //             ),
+  //           )).toList(),
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
 
   Widget _buildMostDeliveredItems() {
     return Container(
@@ -577,7 +627,9 @@ class _ReportsScreenState extends State<ReportsScreen> {
         color: widget.isDarkMode ? const Color(0xFF1E1E1E) : Colors.white,
         borderRadius: BorderRadius.circular(8),
         border: Border.all(
-          color: widget.isDarkMode ? const Color(0xFF3A3A3A) : const Color(0xFFE5E7EB),
+          color: widget.isDarkMode
+              ? const Color(0xFF3A3A3A)
+              : const Color(0xFFE5E7EB),
         ),
         boxShadow: [
           BoxShadow(
@@ -595,7 +647,9 @@ class _ReportsScreenState extends State<ReportsScreen> {
               Icon(
                 Icons.local_shipping,
                 size: 20,
-                color: widget.isDarkMode ? const Color(0xFF03DAC6) : const Color(0xFF10B981),
+                color: widget.isDarkMode
+                    ? const Color(0xFF03DAC6)
+                    : const Color(0xFF10B981),
               ),
               const SizedBox(width: 8),
               Text(
@@ -603,48 +657,56 @@ class _ReportsScreenState extends State<ReportsScreen> {
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
-                  color: widget.isDarkMode ? Colors.white : const Color(0xFF0F172A),
+                  color: widget.isDarkMode
+                      ? Colors.white
+                      : const Color(0xFF0F172A),
                 ),
               ),
             ],
           ),
           const SizedBox(height: 16),
           ...topItems.map((item) => Padding(
-            padding: const EdgeInsets.only(bottom: 12),
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                padding: const EdgeInsets.only(bottom: 12),
+                child: Column(
                   children: [
-                    Text(
-                      item['name'] as String,
-                      style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        color: widget.isDarkMode ? Colors.white : const Color(0xFF0F172A),
-                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          item['name'] as String,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            color: widget.isDarkMode
+                                ? Colors.white
+                                : const Color(0xFF0F172A),
+                          ),
+                        ),
+                        Text(
+                          '${item['count']}',
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: widget.isDarkMode
+                                ? const Color(0xFFB0B0B0)
+                                : const Color(0xFF6B7280),
+                          ),
+                        ),
+                      ],
                     ),
-                    Text(
-                      '${item['count']}',
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: widget.isDarkMode ? const Color(0xFFB0B0B0) : const Color(0xFF6B7280),
+                    const SizedBox(height: 4),
+                    LinearProgressIndicator(
+                      value: (item['percentage'] as double) / 100,
+                      backgroundColor: widget.isDarkMode
+                          ? const Color(0xFF3A3A3A)
+                          : const Color(0xFFE5E7EB),
+                      valueColor: AlwaysStoppedAnimation<Color>(
+                        widget.isDarkMode
+                            ? const Color(0xFFBB86FC)
+                            : const Color(0xFF3B82F6),
                       ),
                     ),
                   ],
                 ),
-                const SizedBox(height: 4),
-                LinearProgressIndicator(
-                  value: (item['percentage'] as double) / 100,
-                  backgroundColor: widget.isDarkMode 
-                      ? const Color(0xFF3A3A3A) 
-                      : const Color(0xFFE5E7EB),
-                  valueColor: AlwaysStoppedAnimation<Color>(
-                    widget.isDarkMode ? const Color(0xFFBB86FC) : const Color(0xFF3B82F6),
-                  ),
-                ),
-              ],
-            ),
-          )),
+              )),
         ],
       ),
     );
@@ -657,7 +719,9 @@ class _ReportsScreenState extends State<ReportsScreen> {
         color: widget.isDarkMode ? const Color(0xFF1E1E1E) : Colors.white,
         borderRadius: BorderRadius.circular(8),
         border: Border.all(
-          color: widget.isDarkMode ? const Color(0xFF3A3A3A) : const Color(0xFFE5E7EB),
+          color: widget.isDarkMode
+              ? const Color(0xFF3A3A3A)
+              : const Color(0xFFE5E7EB),
         ),
         boxShadow: [
           BoxShadow(
@@ -675,7 +739,9 @@ class _ReportsScreenState extends State<ReportsScreen> {
               Icon(
                 Icons.battery_full,
                 size: 20,
-                color: widget.isDarkMode ? const Color(0xFFFFB74D) : const Color(0xFFF59E0B),
+                color: widget.isDarkMode
+                    ? const Color(0xFFFFB74D)
+                    : const Color(0xFFF59E0B),
               ),
               const SizedBox(width: 8),
               Text(
@@ -683,7 +749,9 @@ class _ReportsScreenState extends State<ReportsScreen> {
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
-                  color: widget.isDarkMode ? Colors.white : const Color(0xFF0F172A),
+                  color: widget.isDarkMode
+                      ? Colors.white
+                      : const Color(0xFF0F172A),
                 ),
               ),
             ],
@@ -691,7 +759,8 @@ class _ReportsScreenState extends State<ReportsScreen> {
           const SizedBox(height: 16),
           _buildHealthItem('Operational', '8 drones', const Color(0xFF10B981)),
           const SizedBox(height: 12),
-          _buildHealthItem('Maintenance Due', '3 drones', const Color(0xFFF59E0B)),
+          _buildHealthItem(
+              'Maintenance Due', '3 drones', const Color(0xFFF59E0B)),
           const SizedBox(height: 12),
           _buildHealthItem('Needs Repair', '1 drone', const Color(0xFFEF4444)),
           const SizedBox(height: 16),
@@ -700,7 +769,9 @@ class _ReportsScreenState extends State<ReportsScreen> {
             decoration: BoxDecoration(
               border: Border(
                 top: BorderSide(
-                  color: widget.isDarkMode ? const Color(0xFF3A3A3A) : const Color(0xFFE5E7EB),
+                  color: widget.isDarkMode
+                      ? const Color(0xFF3A3A3A)
+                      : const Color(0xFFE5E7EB),
                 ),
               ),
             ),
@@ -711,7 +782,9 @@ class _ReportsScreenState extends State<ReportsScreen> {
                   'Average Battery Cycles',
                   style: TextStyle(
                     fontSize: 14,
-                    color: widget.isDarkMode ? const Color(0xFFB0B0B0) : const Color(0xFF6B7280),
+                    color: widget.isDarkMode
+                        ? const Color(0xFFB0B0B0)
+                        : const Color(0xFF6B7280),
                   ),
                 ),
                 const SizedBox(height: 8),
@@ -720,11 +793,13 @@ class _ReportsScreenState extends State<ReportsScreen> {
                     Expanded(
                       child: LinearProgressIndicator(
                         value: 0.73,
-                        backgroundColor: widget.isDarkMode 
-                            ? const Color(0xFF3A3A3A) 
+                        backgroundColor: widget.isDarkMode
+                            ? const Color(0xFF3A3A3A)
                             : const Color(0xFFE5E7EB),
                         valueColor: AlwaysStoppedAnimation<Color>(
-                          widget.isDarkMode ? const Color(0xFF03DAC6) : const Color(0xFF10B981),
+                          widget.isDarkMode
+                              ? const Color(0xFF03DAC6)
+                              : const Color(0xFF10B981),
                         ),
                       ),
                     ),
@@ -734,7 +809,9 @@ class _ReportsScreenState extends State<ReportsScreen> {
                       style: TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.w500,
-                        color: widget.isDarkMode ? Colors.white : const Color(0xFF374151),
+                        color: widget.isDarkMode
+                            ? Colors.white
+                            : const Color(0xFF374151),
                       ),
                     ),
                   ],
@@ -772,7 +849,9 @@ class _ReportsScreenState extends State<ReportsScreen> {
                 label,
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
-                  color: widget.isDarkMode ? Colors.white : const Color(0xFF0F172A),
+                  color: widget.isDarkMode
+                      ? Colors.white
+                      : const Color(0xFF0F172A),
                 ),
               ),
             ],
@@ -791,15 +870,23 @@ class _ReportsScreenState extends State<ReportsScreen> {
 
   Widget _buildDeliveryBarChart() {
     final monthlyData = fleetStats['monthlyData'] as List? ?? [];
-    if (monthlyData.isEmpty) return const Center(child: Text('No data available'));
+    if (monthlyData.isEmpty)
+      return const Center(child: Text('No data available'));
 
     return BarChart(
       BarChartData(
         alignment: BarChartAlignment.spaceAround,
-        maxY: monthlyData.fold(0.0, (max, data) => 
-          (data['successful_deliveries'] + data['unsuccessful_deliveries']).toDouble() > max 
-            ? (data['successful_deliveries'] + data['unsuccessful_deliveries']).toDouble() 
-            : max) * 1.2,
+        maxY: monthlyData.fold(
+                0.0,
+                (max, data) => (data['successful_deliveries'] +
+                                data['unsuccessful_deliveries'])
+                            .toDouble() >
+                        max
+                    ? (data['successful_deliveries'] +
+                            data['unsuccessful_deliveries'])
+                        .toDouble()
+                    : max) *
+            1.2,
         barTouchData: BarTouchData(enabled: true),
         titlesData: FlTitlesData(
           show: true,
@@ -808,11 +895,15 @@ class _ReportsScreenState extends State<ReportsScreen> {
               showTitles: true,
               getTitlesWidget: (value, meta) {
                 if (value.toInt() < monthlyData.length) {
-                  final month = monthlyData[value.toInt()]['month'].toString().split('-')[1];
-                  return Text(month, style: TextStyle(
-                    color: widget.isDarkMode ? Colors.white70 : Colors.black54,
-                    fontSize: 12,
-                  ));
+                  final month = monthlyData[value.toInt()]['month']
+                      .toString()
+                      .split('-')[1];
+                  return Text(month,
+                      style: TextStyle(
+                        color:
+                            widget.isDarkMode ? Colors.white70 : Colors.black54,
+                        fontSize: 12,
+                      ));
                 }
                 return const Text('');
               },
@@ -830,8 +921,12 @@ class _ReportsScreenState extends State<ReportsScreen> {
             x: index,
             barRods: [
               BarChartRodData(
-                toY: (data['successful_deliveries'] + data['unsuccessful_deliveries']).toDouble(),
-                color: widget.isDarkMode ? const Color(0xFF03DAC6) : const Color(0xFF10B981),
+                toY: (data['successful_deliveries'] +
+                        data['unsuccessful_deliveries'])
+                    .toDouble(),
+                color: widget.isDarkMode
+                    ? const Color(0xFF03DAC6)
+                    : const Color(0xFF10B981),
                 width: 16,
                 borderRadius: BorderRadius.circular(4),
               ),
@@ -849,25 +944,34 @@ class _ReportsScreenState extends State<ReportsScreen> {
         centerSpaceRadius: 30,
         sections: [
           PieChartSectionData(
-            color: widget.isDarkMode ? const Color(0xFF03DAC6) : const Color(0xFF10B981),
+            color: widget.isDarkMode
+                ? const Color(0xFF03DAC6)
+                : const Color(0xFF10B981),
             value: 68,
             title: '68%',
             radius: 35,
-            titleStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.white),
+            titleStyle: const TextStyle(
+                fontSize: 12, fontWeight: FontWeight.bold, color: Colors.white),
           ),
           PieChartSectionData(
-            color: widget.isDarkMode ? const Color(0xFFFFB74D) : const Color(0xFFF59E0B),
+            color: widget.isDarkMode
+                ? const Color(0xFFFFB74D)
+                : const Color(0xFFF59E0B),
             value: 15,
             title: '15%',
             radius: 35,
-            titleStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.white),
+            titleStyle: const TextStyle(
+                fontSize: 12, fontWeight: FontWeight.bold, color: Colors.white),
           ),
           PieChartSectionData(
-            color: widget.isDarkMode ? const Color(0xFF90A4AE) : const Color(0xFF6B7280),
+            color: widget.isDarkMode
+                ? const Color(0xFF90A4AE)
+                : const Color(0xFF6B7280),
             value: 17,
             title: '17%',
             radius: 35,
-            titleStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.white),
+            titleStyle: const TextStyle(
+                fontSize: 12, fontWeight: FontWeight.bold, color: Colors.white),
           ),
         ],
       ),
@@ -876,7 +980,8 @@ class _ReportsScreenState extends State<ReportsScreen> {
 
   Widget _buildResponseTimeLineChart() {
     final monthlyData = fleetStats['monthlyData'] as List? ?? [];
-    if (monthlyData.isEmpty) return const Center(child: Text('No data available'));
+    if (monthlyData.isEmpty)
+      return const Center(child: Text('No data available'));
 
     return LineChart(
       LineChartData(
@@ -887,11 +992,15 @@ class _ReportsScreenState extends State<ReportsScreen> {
               showTitles: true,
               getTitlesWidget: (value, meta) {
                 if (value.toInt() < monthlyData.length) {
-                  final month = monthlyData[value.toInt()]['month'].toString().split('-')[1];
-                  return Text(month, style: TextStyle(
-                    color: widget.isDarkMode ? Colors.white70 : Colors.black54,
-                    fontSize: 10,
-                  ));
+                  final month = monthlyData[value.toInt()]['month']
+                      .toString()
+                      .split('-')[1];
+                  return Text(month,
+                      style: TextStyle(
+                        color:
+                            widget.isDarkMode ? Colors.white70 : Colors.black54,
+                        fontSize: 10,
+                      ));
                 }
                 return const Text('');
               },
@@ -905,17 +1014,22 @@ class _ReportsScreenState extends State<ReportsScreen> {
         lineBarsData: [
           LineChartBarData(
             spots: monthlyData.asMap().entries.map((entry) {
-              return FlSpot(entry.key.toDouble(), entry.value['average_response_time'].toDouble());
+              return FlSpot(entry.key.toDouble(),
+                  entry.value['average_response_time'].toDouble());
             }).toList(),
             isCurved: true,
-            color: widget.isDarkMode ? const Color(0xFFFFB74D) : const Color(0xFFF59E0B),
+            color: widget.isDarkMode
+                ? const Color(0xFFFFB74D)
+                : const Color(0xFFF59E0B),
             barWidth: 3,
             dotData: FlDotData(
               show: true,
               getDotPainter: (spot, percent, barData, index) {
                 return FlDotCirclePainter(
                   radius: 4,
-                  color: widget.isDarkMode ? const Color(0xFFFFB74D) : const Color(0xFFF59E0B),
+                  color: widget.isDarkMode
+                      ? const Color(0xFFFFB74D)
+                      : const Color(0xFFF59E0B),
                   strokeWidth: 2,
                   strokeColor: Colors.white,
                 );
@@ -923,7 +1037,10 @@ class _ReportsScreenState extends State<ReportsScreen> {
             ),
             belowBarData: BarAreaData(
               show: true,
-              color: (widget.isDarkMode ? const Color(0xFFFFB74D) : const Color(0xFFF59E0B)).withValues(alpha: 0.3),
+              color: (widget.isDarkMode
+                      ? const Color(0xFFFFB74D)
+                      : const Color(0xFFF59E0B))
+                  .withValues(alpha: 0.3),
             ),
           ),
         ],

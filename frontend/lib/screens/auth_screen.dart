@@ -64,29 +64,29 @@ class _AuthScreenState extends State<AuthScreen> {
             ),
 
             // Settings Button
-            Positioned(
-              top: MediaQuery.of(context).padding.top + 24,
-              left: 24,
-              child: StyledButton(
-                onPressed: () {},
-                backgroundColor: Colors.transparent,
-                padding: const EdgeInsets.all(0),
-                child: Container(
-                  width: 48,
-                  height: 48,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: widget.isDarkMode
-                        ? Colors.grey.shade800.withValues(alpha: 0.3)
-                        : Colors.white.withValues(alpha: 0.3),
-                  ),
-                  child: Icon(
-                    Icons.settings,
-                    color: widget.isDarkMode ? Colors.grey.shade300 : Colors.grey.shade700,
-                  ),
-                ),
-              ),
-            ),
+            // Positioned(
+            //   top: MediaQuery.of(context).padding.top + 24,
+            //   left: 24,
+            //   child: StyledButton(
+            //     onPressed: () {},
+            //     backgroundColor: Colors.transparent,
+            //     padding: const EdgeInsets.all(0),
+            //     child: Container(
+            //       width: 48,
+            //       height: 48,
+            //       decoration: BoxDecoration(
+            //         shape: BoxShape.circle,
+            //         color: widget.isDarkMode
+            //             ? Colors.grey.shade800.withValues(alpha: 0.3)
+            //             : Colors.white.withValues(alpha: 0.3),
+            //       ),
+            //       child: Icon(
+            //         Icons.settings,
+            //         color: widget.isDarkMode ? Colors.grey.shade300 : Colors.grey.shade700,
+            //       ),
+            //     ),
+            //   ),
+            // ),
 
             // Main Content
             Center(
@@ -401,17 +401,17 @@ class _AuthScreenState extends State<AuthScreen> {
         const SizedBox(height: 24),
 
         // Links
-        TextButton(
-          onPressed: () {},
-          child: Text(
-            'Forgot Password?',
-            style: TextStyle(
-              color: widget.isDarkMode
-                  ? const Color(0xFFBB86FC)
-                  : Colors.blue.shade600,
-            ),
-          ),
-        ),
+        // TextButton(
+        //   onPressed: () {},
+        //   child: Text(
+        //     'Forgot Password?',
+        //     style: TextStyle(
+        //       color: widget.isDarkMode
+        //           ? const Color(0xFFBB86FC)
+        //           : Colors.blue.shade600,
+        //     ),
+        //   ),
+        // ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

@@ -27,7 +27,7 @@ class _AddMissionModalState extends State<AddMissionModal> {
   String coordinates = '';
   String packageType = '';
   String urgency = 'Medium';
-  String pilot = '';
+  String pilot = 'auto-assign';
   String notes = '';
   bool isManualLocation = false;
   bool isLoading = true;
@@ -147,7 +147,7 @@ class _AddMissionModalState extends State<AddMissionModal> {
   }
 
   void handlePreview() {
-    if (location.isEmpty || packageType.isEmpty || pilot.isEmpty) {
+    if (location.isEmpty || packageType.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Please fill in all required fields')),
       );
@@ -193,7 +193,9 @@ class _AddMissionModalState extends State<AddMissionModal> {
       
       if (result['success']) {
         // Create local mission data for UI
-        final selectedPilot = pilotOptions.firstWhere((p) => p['value'] == pilot);
+        final selectedPilot = pilot == 'auto-assign' 
+            ? {'name': 'Auto-assigned', 'value': 'auto-assign'}
+            : pilotOptions.firstWhere((p) => p['value'] == pilot);
         final selectedZone = disasterZones.firstWhere((z) => z['value'] == location, orElse: () => <String, dynamic>{});
         
         final newMission = MissionData(
@@ -709,8 +711,7 @@ class _AddMissionModalState extends State<AddMissionModal> {
         _buildSectionTitle('Assign Pilot/Operator *', Icons.person),
         const SizedBox(height: 12),
         DropdownButtonFormField<String>(
-          initialValue: pilot.isEmpty ? null : pilot,
-          hint: const Text('Select pilot or operator...'),
+          value: pilot,
           decoration: InputDecoration(
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
@@ -726,54 +727,87 @@ class _AddMissionModalState extends State<AddMissionModal> {
             color: widget.isDarkMode ? Colors.white : Colors.black,
           ),
           isExpanded: true,
-          items: pilotOptions.map((p) => DropdownMenuItem<String>(
-            value: p['value'] as String,
-            enabled: p['status'] == 'Available',
-            child: Row(
-              children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        p['name']!,
-                        style: TextStyle(
-                          color: p['status'] == 'Available' 
-                              ? (widget.isDarkMode ? Colors.white : Colors.black)
-                              : Colors.grey,
+          items: [
+            DropdownMenuItem<String>(
+              value: 'auto-assign',
+              child: Row(
+                children: [
+                  Icon(Icons.auto_awesome, size: 16, color: widget.isDarkMode ? Colors.grey.shade400 : Colors.grey.shade600),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          'Auto-assign pilot',
+                          style: TextStyle(
+                            color: widget.isDarkMode ? Colors.grey.shade400 : Colors.grey.shade600,
+                            fontStyle: FontStyle.italic,
+                          ),
                         ),
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      Text(
-                        '${p['experience']} experience',
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: widget.isDarkMode ? const Color(0xFFB0B0B0) : const Color(0xFF5F6368),
+                        Text(
+                          'System will assign available pilot',
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: widget.isDarkMode ? const Color(0xFFB0B0B0) : const Color(0xFF5F6368),
+                          ),
                         ),
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                  decoration: BoxDecoration(
-                    color: p['status'] == 'Available' ? Colors.green.shade100 : Colors.grey.shade100,
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Text(
-                    p['status']!,
-                    style: TextStyle(
-                      fontSize: 10,
-                      fontWeight: FontWeight.w600,
-                      color: p['status'] == 'Available' ? Colors.green.shade700 : Colors.grey.shade600,
+                      ],
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          )).toList(),
+            ...pilotOptions.map((p) => DropdownMenuItem<String>(
+              value: p['value'] as String,
+              enabled: p['status'] == 'Available',
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          p['name']!,
+                          style: TextStyle(
+                            color: p['status'] == 'Available' 
+                                ? (widget.isDarkMode ? Colors.white : Colors.black)
+                                : Colors.grey,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        Text(
+                          '${p['experience']} experience',
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: widget.isDarkMode ? const Color(0xFFB0B0B0) : const Color(0xFF5F6368),
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                    decoration: BoxDecoration(
+                      color: p['status'] == 'Available' ? Colors.green.shade100 : Colors.grey.shade100,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Text(
+                      p['status']!,
+                      style: TextStyle(
+                        fontSize: 10,
+                        fontWeight: FontWeight.w600,
+                        color: p['status'] == 'Available' ? Colors.green.shade700 : Colors.grey.shade600,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            )),
+          ],
           onChanged: (value) => setState(() => pilot = value!),
         ),
         
@@ -827,7 +861,9 @@ class _AddMissionModalState extends State<AddMissionModal> {
 
   Widget _buildPreview() {
     final selectedPackage = packageOptions.firstWhere((pkg) => pkg['value'] == packageType);
-    final selectedPilot = pilotOptions.firstWhere((p) => p['value'] == pilot);
+    final selectedPilot = pilot == 'auto-assign' 
+        ? {'name': 'Auto-assigned', 'value': 'auto-assign'}
+        : pilotOptions.firstWhere((p) => p['value'] == pilot);
     final selectedZone = disasterZones.firstWhere((z) => z['value'] == location, orElse: () => <String, dynamic>{});
     
     return Container(

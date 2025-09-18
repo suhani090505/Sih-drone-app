@@ -25,7 +25,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
   // Organization info matching website exactly
   final organizationInfo = {
     'name': 'Emergency Response Coalition',
-    'aboutUs': 'Dedicated to providing rapid disaster response through advanced drone technology and coordinated relief efforts. Serving communities worldwide with precision, speed, and compassion in times of crisis.',
+    'aboutUs':
+        'Dedicated to providing rapid disaster response through advanced drone technology and coordinated relief efforts. Serving communities worldwide with precision, speed, and compassion in times of crisis.',
     'established': '2019',
     'activeFleet': '47 Drones',
     'missionsCompleted': '2,847',
@@ -33,18 +34,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
   };
 
   final userInfo = {
-    'name': 'Alex Johnson',
+    'name': 'Aram Farooque',
     'role': 'Operations Manager',
-    'email': 'alex.johnson@erc.org',
-    'phone': '+1 (555) 123-4567',
-    'location': 'San Francisco, CA',
+    'email': 'droneops@erc.org',
+    'phone': '+91 0123456789',
+    'location': 'Bengaluru ,India',
     'joinDate': 'March 2022'
   };
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: widget.isDarkMode ? const Color(0xFF121212) : const Color(0xFFF8F9FA),
+      color:
+          widget.isDarkMode ? const Color(0xFF121212) : const Color(0xFFF8F9FA),
       child: Stack(
         children: [
           // Main Content
@@ -60,20 +62,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       onPressed: () {},
                       icon: Icon(
                         Icons.arrow_back,
-                        color: widget.isDarkMode ? const Color(0xFFE0E0E0) : const Color(0xFF374151),
+                        color: widget.isDarkMode
+                            ? const Color(0xFFE0E0E0)
+                            : const Color(0xFF374151),
                       ),
                     ),
                     IconButton(
                       onPressed: () => setState(() => _isDrawerOpen = true),
                       icon: Icon(
                         Icons.menu,
-                        color: widget.isDarkMode ? const Color(0xFFE0E0E0) : const Color(0xFF374151),
+                        color: widget.isDarkMode
+                            ? const Color(0xFFE0E0E0)
+                            : const Color(0xFF374151),
                       ),
                     ),
                   ],
                 ),
               ),
-              
+
               // Profile Content
               Expanded(
                 child: SingleChildScrollView(
@@ -88,7 +94,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             begin: Alignment.topLeft,
                             end: Alignment.bottomRight,
                             colors: widget.isDarkMode
-                                ? [const Color(0xFF1E1E1E), const Color(0xFF232323)]
+                                ? [
+                                    const Color(0xFF1E1E1E),
+                                    const Color(0xFF232323)
+                                  ]
                                 : [Colors.white, const Color(0xFFF8FAFC)],
                           ),
                           borderRadius: BorderRadius.circular(16),
@@ -111,8 +120,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   begin: Alignment.topLeft,
                                   end: Alignment.bottomRight,
                                   colors: widget.isDarkMode
-                                      ? [const Color(0xFFBB86FC), const Color(0xFF03DAC6)]
-                                      : [const Color(0xFF3B82F6), const Color(0xFF8B5CF6)],
+                                      ? [
+                                          const Color(0xFFBB86FC),
+                                          const Color(0xFF03DAC6)
+                                        ]
+                                      : [
+                                          const Color(0xFF3B82F6),
+                                          const Color(0xFF8B5CF6)
+                                        ],
                                 ),
                                 borderRadius: BorderRadius.circular(16),
                               ),
@@ -123,35 +138,42 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ),
                             ),
                             const SizedBox(height: 24),
-                            
+
                             // Organization Name
                             Text(
                               organizationInfo['name']!,
                               style: TextStyle(
                                 fontSize: 24,
                                 fontWeight: FontWeight.bold,
-                                color: widget.isDarkMode ? Colors.white : const Color(0xFF0F172A),
+                                color: widget.isDarkMode
+                                    ? Colors.white
+                                    : const Color(0xFF0F172A),
                               ),
                               textAlign: TextAlign.center,
                             ),
                             const SizedBox(height: 8),
-                            
+
                             // Status Badges
                             Wrap(
                               alignment: WrapAlignment.center,
                               spacing: 8,
                               children: [
                                 Container(
-                                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 12, vertical: 4),
                                   decoration: BoxDecoration(
-                                    color: widget.isDarkMode 
-                                        ? const Color(0xFF03DAC6).withValues(alpha: 0.2) 
-                                        : const Color(0xFF10B981).withValues(alpha: 0.1),
+                                    color: widget.isDarkMode
+                                        ? const Color(0xFF03DAC6)
+                                            .withValues(alpha: 0.2)
+                                        : const Color(0xFF10B981)
+                                            .withValues(alpha: 0.1),
                                     borderRadius: BorderRadius.circular(12),
                                     border: Border.all(
-                                      color: widget.isDarkMode 
-                                          ? const Color(0xFF03DAC6).withValues(alpha: 0.4) 
-                                          : const Color(0xFF10B981).withValues(alpha: 0.2),
+                                      color: widget.isDarkMode
+                                          ? const Color(0xFF03DAC6)
+                                              .withValues(alpha: 0.4)
+                                          : const Color(0xFF10B981)
+                                              .withValues(alpha: 0.2),
                                     ),
                                   ),
                                   child: Text(
@@ -159,23 +181,28 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     style: TextStyle(
                                       fontSize: 12,
                                       fontWeight: FontWeight.w600,
-                                      color: widget.isDarkMode 
-                                          ? const Color(0xFF03DAC6) 
+                                      color: widget.isDarkMode
+                                          ? const Color(0xFF03DAC6)
                                           : const Color(0xFF10B981),
                                     ),
                                   ),
                                 ),
                                 Container(
-                                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 12, vertical: 4),
                                   decoration: BoxDecoration(
-                                    color: widget.isDarkMode 
-                                        ? const Color(0xFFBB86FC).withValues(alpha: 0.2) 
-                                        : const Color(0xFF3B82F6).withValues(alpha: 0.1),
+                                    color: widget.isDarkMode
+                                        ? const Color(0xFFBB86FC)
+                                            .withValues(alpha: 0.2)
+                                        : const Color(0xFF3B82F6)
+                                            .withValues(alpha: 0.1),
                                     borderRadius: BorderRadius.circular(12),
                                     border: Border.all(
-                                      color: widget.isDarkMode 
-                                          ? const Color(0xFFBB86FC).withValues(alpha: 0.4) 
-                                          : const Color(0xFF3B82F6).withValues(alpha: 0.2),
+                                      color: widget.isDarkMode
+                                          ? const Color(0xFFBB86FC)
+                                              .withValues(alpha: 0.4)
+                                          : const Color(0xFF3B82F6)
+                                              .withValues(alpha: 0.2),
                                     ),
                                   ),
                                   child: Text(
@@ -183,8 +210,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     style: TextStyle(
                                       fontSize: 12,
                                       fontWeight: FontWeight.w600,
-                                      color: widget.isDarkMode 
-                                          ? const Color(0xFFBB86FC) 
+                                      color: widget.isDarkMode
+                                          ? const Color(0xFFBB86FC)
                                           : const Color(0xFF3B82F6),
                                     ),
                                   ),
@@ -192,27 +219,31 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ],
                             ),
                             const SizedBox(height: 24),
-                            
+
                             // About Text
                             Text(
                               organizationInfo['aboutUs']!,
                               style: TextStyle(
                                 fontSize: 14,
                                 height: 1.5,
-                                color: widget.isDarkMode ? const Color(0xFFE0E0E0) : const Color(0xFF6B7280),
+                                color: widget.isDarkMode
+                                    ? const Color(0xFFE0E0E0)
+                                    : const Color(0xFF6B7280),
                               ),
                               textAlign: TextAlign.center,
                             ),
                             const SizedBox(height: 24),
-                            
+
                             // Quick Stats Grid
                             LayoutBuilder(
                               builder: (context, constraints) {
                                 return GridView.count(
                                   shrinkWrap: true,
                                   physics: const NeverScrollableScrollPhysics(),
-                                  crossAxisCount: constraints.maxWidth > 300 ? 2 : 1,
-                                  childAspectRatio: constraints.maxWidth > 300 ? 1.5 : 2.5,
+                                  crossAxisCount:
+                                      constraints.maxWidth > 300 ? 2 : 1,
+                                  childAspectRatio:
+                                      constraints.maxWidth > 300 ? 1.5 : 2.5,
                                   mainAxisSpacing: 16,
                                   crossAxisSpacing: 16,
                                   children: [
@@ -220,25 +251,33 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       'Established',
                                       organizationInfo['established']!,
                                       Icons.calendar_today,
-                                      widget.isDarkMode ? const Color(0xFFBB86FC) : const Color(0xFF3B82F6),
+                                      widget.isDarkMode
+                                          ? const Color(0xFFBB86FC)
+                                          : const Color(0xFF3B82F6),
                                     ),
                                     _buildStatCard(
                                       'Active Fleet',
                                       organizationInfo['activeFleet']!,
                                       Icons.flight,
-                                      widget.isDarkMode ? const Color(0xFF03DAC6) : const Color(0xFF8B5CF6),
+                                      widget.isDarkMode
+                                          ? const Color(0xFF03DAC6)
+                                          : const Color(0xFF8B5CF6),
                                     ),
                                     _buildStatCard(
                                       'Missions',
                                       organizationInfo['missionsCompleted']!,
                                       Icons.emoji_events,
-                                      widget.isDarkMode ? const Color(0xFFBB86FC) : const Color(0xFF10B981),
+                                      widget.isDarkMode
+                                          ? const Color(0xFFBB86FC)
+                                          : const Color(0xFF10B981),
                                     ),
                                     _buildStatCard(
                                       'Coverage',
                                       organizationInfo['countries']!,
                                       Icons.public,
-                                      widget.isDarkMode ? const Color(0xFF03DAC6) : const Color(0xFFF59E0B),
+                                      widget.isDarkMode
+                                          ? const Color(0xFF03DAC6)
+                                          : const Color(0xFFF59E0B),
                                     ),
                                   ],
                                 );
@@ -247,9 +286,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           ],
                         ),
                       ),
-                      
+
                       const SizedBox(height: 24),
-                      
+
                       // Quick Access Cards
                       Row(
                         children: [
@@ -261,8 +300,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   begin: Alignment.topLeft,
                                   end: Alignment.bottomRight,
                                   colors: widget.isDarkMode
-                                      ? [const Color(0xFFBB86FC), const Color(0xFFBB86FC).withValues(alpha: 0.8)]
-                                      : [const Color(0xFF3B82F6), const Color(0xFF2563EB)],
+                                      ? [
+                                          const Color(0xFFBB86FC),
+                                          const Color(0xFFBB86FC)
+                                              .withValues(alpha: 0.8)
+                                        ]
+                                      : [
+                                          const Color(0xFF3B82F6),
+                                          const Color(0xFF2563EB)
+                                        ],
                                 ),
                                 borderRadius: BorderRadius.circular(12),
                                 boxShadow: [
@@ -280,8 +326,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       Container(
                                         padding: const EdgeInsets.all(8),
                                         decoration: BoxDecoration(
-                                          color: Colors.black.withValues(alpha: 0.2),
-                                          borderRadius: BorderRadius.circular(8),
+                                          color: Colors.black
+                                              .withValues(alpha: 0.2),
+                                          borderRadius:
+                                              BorderRadius.circular(8),
                                         ),
                                         child: const Icon(
                                           Icons.trending_up,
@@ -304,7 +352,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     '12 Active • 3 Maintenance',
                                     style: TextStyle(
                                       fontSize: 14,
-                                      color: widget.isDarkMode ? Colors.black.withValues(alpha: 0.7) : Colors.blue.shade100,
+                                      color: widget.isDarkMode
+                                          ? Colors.black.withValues(alpha: 0.7)
+                                          : Colors.blue.shade100,
                                     ),
                                   ),
                                 ],
@@ -320,8 +370,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   begin: Alignment.topLeft,
                                   end: Alignment.bottomRight,
                                   colors: widget.isDarkMode
-                                      ? [const Color(0xFF03DAC6), const Color(0xFF03DAC6).withValues(alpha: 0.8)]
-                                      : [const Color(0xFF10B981), const Color(0xFF059669)],
+                                      ? [
+                                          const Color(0xFF03DAC6),
+                                          const Color(0xFF03DAC6)
+                                              .withValues(alpha: 0.8)
+                                        ]
+                                      : [
+                                          const Color(0xFF10B981),
+                                          const Color(0xFF059669)
+                                        ],
                                 ),
                                 borderRadius: BorderRadius.circular(12),
                                 boxShadow: [
@@ -339,8 +396,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       Container(
                                         padding: const EdgeInsets.all(8),
                                         decoration: BoxDecoration(
-                                          color: Colors.black.withValues(alpha: 0.2),
-                                          borderRadius: BorderRadius.circular(8),
+                                          color: Colors.black
+                                              .withValues(alpha: 0.2),
+                                          borderRadius:
+                                              BorderRadius.circular(8),
                                         ),
                                         child: const Icon(
                                           Icons.people,
@@ -363,7 +422,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     '24 Operators • 8 Pilots',
                                     style: TextStyle(
                                       fontSize: 14,
-                                      color: widget.isDarkMode ? Colors.black.withValues(alpha: 0.7) : Colors.green.shade100,
+                                      color: widget.isDarkMode
+                                          ? Colors.black.withValues(alpha: 0.7)
+                                          : Colors.green.shade100,
                                     ),
                                   ),
                                 ],
@@ -378,7 +439,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
             ],
           ),
-          
+
           // Sliding Drawer
           if (_isDrawerOpen) ...[
             // Backdrop
@@ -388,7 +449,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 color: Colors.black.withValues(alpha: 0.5),
               ),
             ),
-            
+
             // Drawer
             Positioned(
               top: 0,
@@ -413,7 +474,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       decoration: BoxDecoration(
                         border: Border(
                           bottom: BorderSide(
-                            color: widget.isDarkMode ? const Color(0xFF3A3A3A) : const Color(0xFFE5E7EB),
+                            color: widget.isDarkMode
+                                ? const Color(0xFF3A3A3A)
+                                : const Color(0xFFE5E7EB),
                           ),
                         ),
                       ),
@@ -427,14 +490,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 style: TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.w600,
-                                  color: widget.isDarkMode ? Colors.white : const Color(0xFF0F172A),
+                                  color: widget.isDarkMode
+                                      ? Colors.white
+                                      : const Color(0xFF0F172A),
                                 ),
                               ),
                               IconButton(
-                                onPressed: () => setState(() => _isDrawerOpen = false),
+                                onPressed: () =>
+                                    setState(() => _isDrawerOpen = false),
                                 icon: Icon(
                                   Icons.close,
-                                  color: widget.isDarkMode ? const Color(0xFFE0E0E0) : const Color(0xFF374151),
+                                  color: widget.isDarkMode
+                                      ? const Color(0xFFE0E0E0)
+                                      : const Color(0xFF374151),
                                 ),
                               ),
                             ],
@@ -444,8 +512,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             children: [
                               CircleAvatar(
                                 radius: 24,
-                                backgroundColor: widget.isDarkMode ? const Color(0xFFBB86FC) : const Color(0xFF3B82F6),
-                                child: const Icon(Icons.person, color: Colors.white),
+                                backgroundColor: widget.isDarkMode
+                                    ? const Color(0xFFBB86FC)
+                                    : const Color(0xFF3B82F6),
+                                child: const Icon(Icons.person,
+                                    color: Colors.white),
                               ),
                               const SizedBox(width: 12),
                               Column(
@@ -455,14 +526,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     userInfo['name']!,
                                     style: TextStyle(
                                       fontWeight: FontWeight.w500,
-                                      color: widget.isDarkMode ? Colors.white : const Color(0xFF0F172A),
+                                      color: widget.isDarkMode
+                                          ? Colors.white
+                                          : const Color(0xFF0F172A),
                                     ),
                                   ),
                                   Text(
                                     userInfo['role']!,
                                     style: TextStyle(
                                       fontSize: 14,
-                                      color: widget.isDarkMode ? const Color(0xFFB0B0B0) : const Color(0xFF6B7280),
+                                      color: widget.isDarkMode
+                                          ? const Color(0xFFB0B0B0)
+                                          : const Color(0xFF6B7280),
                                     ),
                                   ),
                                 ],
@@ -472,7 +547,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ],
                       ),
                     ),
-                    
+
                     // Menu Items
                     Expanded(
                       child: SingleChildScrollView(
@@ -482,21 +557,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             _buildMenuItem(
                               icon: Icons.flight,
                               title: 'Manage Fleet',
-                              description: 'View and register drones, update firmware',
+                              description:
+                                  'View and register drones, update firmware',
                               badge: '3',
                               onTap: () {
-                                setState(() => _showManageFleet = !_showManageFleet);
+                                setState(
+                                    () => _showManageFleet = !_showManageFleet);
                               },
                             ),
                             if (_showManageFleet) _buildManageFleetSection(),
                             _buildMenuItem(
                               icon: Icons.notifications,
                               title: 'Notification Settings',
-                              description: 'Customize alerts for missions and incidents',
+                              description:
+                                  'Customize alerts for missions and incidents',
                               trailing: Switch(
                                 value: _notificationsEnabled,
-                                onChanged: (value) => setState(() => _notificationsEnabled = value),
-                                activeThumbColor: widget.isDarkMode ? const Color(0xFFBB86FC) : const Color(0xFF3B82F6),
+                                onChanged: (value) => setState(
+                                    () => _notificationsEnabled = value),
+                                activeThumbColor: widget.isDarkMode
+                                    ? const Color(0xFFBB86FC)
+                                    : const Color(0xFF3B82F6),
                               ),
                             ),
                             _buildMenuItem(
@@ -504,7 +585,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               title: 'App Settings',
                               description: 'Units, time zones, preferences',
                               onTap: () {
-                                setState(() => _showAppSettings = !_showAppSettings);
+                                setState(
+                                    () => _showAppSettings = !_showAppSettings);
                               },
                             ),
                             if (_showAppSettings) _buildAppSettingsSection(),
@@ -513,20 +595,28 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               title: 'Language',
                               description: 'English (US)',
                               onTap: () {
-                                setState(() => _showLanguageSelection = !_showLanguageSelection);
+                                setState(() => _showLanguageSelection =
+                                    !_showLanguageSelection);
                               },
                             ),
                             if (_showLanguageSelection) _buildLanguageSection(),
                             _buildMenuItem(
-                              icon: widget.isDarkMode ? Icons.light_mode : Icons.dark_mode,
+                              icon: widget.isDarkMode
+                                  ? Icons.light_mode
+                                  : Icons.dark_mode,
                               title: 'Dark/Light Mode',
-                              description: 'Currently ${widget.isDarkMode ? 'Dark' : 'Light'} mode',
+                              description:
+                                  'Currently ${widget.isDarkMode ? 'Dark' : 'Light'} mode',
                               trailing: Switch(
                                 value: widget.isDarkMode,
                                 onChanged: (value) {
-                                  context.read<AppStateProvider>().toggleDarkMode();
+                                  context
+                                      .read<AppStateProvider>()
+                                      .toggleDarkMode();
                                 },
-                                activeThumbColor: widget.isDarkMode ? const Color(0xFFBB86FC) : const Color(0xFF3B82F6),
+                                activeThumbColor: widget.isDarkMode
+                                    ? const Color(0xFFBB86FC)
+                                    : const Color(0xFF3B82F6),
                               ),
                             ),
                             _buildMenuItem(
@@ -534,25 +624,30 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               title: 'Rate & Feedback',
                               description: 'Help us improve the app',
                               onTap: () {
-                                setState(() => _showRateFeedback = !_showRateFeedback);
+                                setState(() =>
+                                    _showRateFeedback = !_showRateFeedback);
                               },
                             ),
                             if (_showRateFeedback) _buildRateFeedbackSection(),
                             _buildMenuItem(
                               icon: Icons.security,
                               title: 'Security & Data',
-                              description: 'Manage roles, permissions, data export',
+                              description:
+                                  'Manage roles, permissions, data export',
                               onTap: () {
-                                setState(() => _showSecurityData = !_showSecurityData);
+                                setState(() =>
+                                    _showSecurityData = !_showSecurityData);
                               },
                             ),
                             if (_showSecurityData) _buildSecurityDataSection(),
                             _buildMenuItem(
                               icon: Icons.help,
                               title: 'Help & Support',
-                              description: 'FAQs, training, and contact support',
+                              description:
+                                  'FAQs, training, and contact support',
                               onTap: () {
-                                setState(() => _showHelpSupport = !_showHelpSupport);
+                                setState(
+                                    () => _showHelpSupport = !_showHelpSupport);
                               },
                             ),
                             if (_showHelpSupport) _buildHelpSupportSection(),
@@ -579,7 +674,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
-  Widget _buildStatCard(String label, String value, IconData icon, Color color) {
+  Widget _buildStatCard(
+      String label, String value, IconData icon, Color color) {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -600,7 +696,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 label,
                 style: TextStyle(
                   fontSize: 12,
-                  color: widget.isDarkMode ? const Color(0xFFB0B0B0) : color.withValues(alpha: 0.7),
+                  color: widget.isDarkMode
+                      ? const Color(0xFFB0B0B0)
+                      : color.withValues(alpha: 0.7),
                 ),
               ),
             ],
@@ -637,8 +735,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
           child: Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: widget.isDarkMode 
-                  ? const Color(0xFF2C2C2C).withValues(alpha: 0.5) 
+              color: widget.isDarkMode
+                  ? const Color(0xFF2C2C2C).withValues(alpha: 0.5)
                   : const Color(0xFFF8FAFC),
               borderRadius: BorderRadius.circular(8),
             ),
@@ -647,16 +745,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 Container(
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
-                    color: widget.isDarkMode 
-                        ? const Color(0xFF2C2C2C) 
+                    color: widget.isDarkMode
+                        ? const Color(0xFF2C2C2C)
                         : const Color(0xFFF1F5F9),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Icon(
                     icon,
                     size: 20,
-                    color: widget.isDarkMode 
-                        ? const Color(0xFFBB86FC) 
+                    color: widget.isDarkMode
+                        ? const Color(0xFFBB86FC)
                         : const Color(0xFF374151),
                   ),
                 ),
@@ -671,13 +769,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             title,
                             style: TextStyle(
                               fontWeight: FontWeight.w500,
-                              color: widget.isDarkMode ? Colors.white : const Color(0xFF0F172A),
+                              color: widget.isDarkMode
+                                  ? Colors.white
+                                  : const Color(0xFF0F172A),
                             ),
                           ),
                           if (badge != null) ...[
                             const SizedBox(width: 8),
                             Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 8, vertical: 2),
                               decoration: BoxDecoration(
                                 color: Colors.red,
                                 borderRadius: BorderRadius.circular(10),
@@ -700,14 +801,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           description,
                           style: TextStyle(
                             fontSize: 14,
-                            color: widget.isDarkMode ? const Color(0xFFB0B0B0) : const Color(0xFF6B7280),
+                            color: widget.isDarkMode
+                                ? const Color(0xFFB0B0B0)
+                                : const Color(0xFF6B7280),
                           ),
                         ),
                       ],
                     ],
                   ),
                 ),
-                if (trailing != null) trailing else const Icon(Icons.chevron_right, color: Colors.grey),
+                if (trailing != null)
+                  trailing
+                else
+                  const Icon(Icons.chevron_right, color: Colors.grey),
               ],
             ),
           ),
@@ -721,10 +827,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
       margin: const EdgeInsets.only(left: 16, bottom: 8),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: widget.isDarkMode ? const Color(0xFF2C2C2C) : const Color(0xFFF8FAFC),
+        color: widget.isDarkMode
+            ? const Color(0xFF2C2C2C)
+            : const Color(0xFFF8FAFC),
         borderRadius: BorderRadius.circular(8),
         border: Border.all(
-          color: widget.isDarkMode ? const Color(0xFF3A3A3A) : const Color(0xFFE5E7EB),
+          color: widget.isDarkMode
+              ? const Color(0xFF3A3A3A)
+              : const Color(0xFFE5E7EB),
         ),
       ),
       child: Column(
@@ -738,13 +848,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
           ),
           const SizedBox(height: 12),
-          
+
           // Add Pilot Option
           GestureDetector(
             onTap: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (context) => AddPilotScreen(isDarkMode: widget.isDarkMode),
+                  builder: (context) =>
+                      AddPilotScreen(isDarkMode: widget.isDarkMode),
                 ),
               );
             },
@@ -752,12 +863,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
               padding: const EdgeInsets.all(12),
               margin: const EdgeInsets.only(bottom: 8),
               decoration: BoxDecoration(
-                color: widget.isDarkMode 
+                color: widget.isDarkMode
                     ? const Color(0xFF03DAC6).withValues(alpha: 0.1)
                     : const Color(0xFF3B82F6).withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(8),
                 border: Border.all(
-                  color: widget.isDarkMode 
+                  color: widget.isDarkMode
                       ? const Color(0xFF03DAC6).withValues(alpha: 0.3)
                       : const Color(0xFF3B82F6).withValues(alpha: 0.3),
                 ),
@@ -767,46 +878,57 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Icon(
                     Icons.person_add,
                     size: 16,
-                    color: widget.isDarkMode ? const Color(0xFF03DAC6) : const Color(0xFF3B82F6),
+                    color: widget.isDarkMode
+                        ? const Color(0xFF03DAC6)
+                        : const Color(0xFF3B82F6),
                   ),
                   const SizedBox(width: 8),
                   Text(
                     'Add Pilot',
                     style: TextStyle(
                       fontWeight: FontWeight.w500,
-                      color: widget.isDarkMode ? const Color(0xFF03DAC6) : const Color(0xFF3B82F6),
+                      color: widget.isDarkMode
+                          ? const Color(0xFF03DAC6)
+                          : const Color(0xFF3B82F6),
                     ),
                   ),
                   const Spacer(),
                   Icon(
                     Icons.arrow_forward_ios,
                     size: 12,
-                    color: widget.isDarkMode ? const Color(0xFF03DAC6) : const Color(0xFF3B82F6),
+                    color: widget.isDarkMode
+                        ? const Color(0xFF03DAC6)
+                        : const Color(0xFF3B82F6),
                   ),
                 ],
               ),
             ),
           ),
-          
+
           const SizedBox(height: 8),
           Text(
             'Current Fleet',
             style: TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.w500,
-              color: widget.isDarkMode ? const Color(0xFFB0B0B0) : const Color(0xFF6B7280),
+              color: widget.isDarkMode
+                  ? const Color(0xFFB0B0B0)
+                  : const Color(0xFF6B7280),
             ),
           ),
           const SizedBox(height: 8),
           _buildFleetItem('DRONE-001', 'MQ-9 Guardian', 'Active', Colors.green),
-          _buildFleetItem('DRONE-002', 'DJI Matrice 300', 'Active', Colors.green),
-          _buildFleetItem('DRONE-003', 'Autel EVO II Pro', 'Maintenance', Colors.orange),
+          _buildFleetItem(
+              'DRONE-002', 'DJI Matrice 300', 'Active', Colors.green),
+          _buildFleetItem(
+              'DRONE-003', 'Autel EVO II Pro', 'Maintenance', Colors.orange),
         ],
       ),
     );
   }
 
-  Widget _buildFleetItem(String id, String model, String status, Color statusColor) {
+  Widget _buildFleetItem(
+      String id, String model, String status, Color statusColor) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 8),
       child: Row(
@@ -821,14 +943,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   id,
                   style: TextStyle(
                     fontWeight: FontWeight.w500,
-                    color: widget.isDarkMode ? Colors.white : const Color(0xFF0F172A),
+                    color: widget.isDarkMode
+                        ? Colors.white
+                        : const Color(0xFF0F172A),
                   ),
                 ),
                 Text(
                   model,
                   style: TextStyle(
                     fontSize: 12,
-                    color: widget.isDarkMode ? const Color(0xFFB0B0B0) : const Color(0xFF6B7280),
+                    color: widget.isDarkMode
+                        ? const Color(0xFFB0B0B0)
+                        : const Color(0xFF6B7280),
                   ),
                 ),
               ],
@@ -859,10 +985,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
       margin: const EdgeInsets.only(left: 16, bottom: 8),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: widget.isDarkMode ? const Color(0xFF2C2C2C) : const Color(0xFFF8FAFC),
+        color: widget.isDarkMode
+            ? const Color(0xFF2C2C2C)
+            : const Color(0xFFF8FAFC),
         borderRadius: BorderRadius.circular(8),
         border: Border.all(
-          color: widget.isDarkMode ? const Color(0xFF3A3A3A) : const Color(0xFFE5E7EB),
+          color: widget.isDarkMode
+              ? const Color(0xFF3A3A3A)
+              : const Color(0xFFE5E7EB),
         ),
       ),
       child: Column(
@@ -889,10 +1019,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
       margin: const EdgeInsets.only(left: 16, bottom: 8),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: widget.isDarkMode ? const Color(0xFF2C2C2C) : const Color(0xFFF8FAFC),
+        color: widget.isDarkMode
+            ? const Color(0xFF2C2C2C)
+            : const Color(0xFFF8FAFC),
         borderRadius: BorderRadius.circular(8),
         border: Border.all(
-          color: widget.isDarkMode ? const Color(0xFF3A3A3A) : const Color(0xFFE5E7EB),
+          color: widget.isDarkMode
+              ? const Color(0xFF3A3A3A)
+              : const Color(0xFFE5E7EB),
         ),
       ),
       child: Column(
@@ -919,10 +1053,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
       margin: const EdgeInsets.only(left: 16, bottom: 8),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: widget.isDarkMode ? const Color(0xFF2C2C2C) : const Color(0xFFF8FAFC),
+        color: widget.isDarkMode
+            ? const Color(0xFF2C2C2C)
+            : const Color(0xFFF8FAFC),
         borderRadius: BorderRadius.circular(8),
         border: Border.all(
-          color: widget.isDarkMode ? const Color(0xFF3A3A3A) : const Color(0xFFE5E7EB),
+          color: widget.isDarkMode
+              ? const Color(0xFF3A3A3A)
+              : const Color(0xFFE5E7EB),
         ),
       ),
       child: Column(
@@ -937,18 +1075,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
           const SizedBox(height: 12),
           Row(
-            children: List.generate(5, (index) => Icon(
-              Icons.star,
-              size: 20,
-              color: index < 4 ? Colors.amber : Colors.grey,
-            )),
+            children: List.generate(
+                5,
+                (index) => Icon(
+                      Icons.star,
+                      size: 20,
+                      color: index < 4 ? Colors.amber : Colors.grey,
+                    )),
           ),
           const SizedBox(height: 8),
           Text(
             'Help us improve DroneOps by sharing your feedback.',
             style: TextStyle(
               fontSize: 12,
-              color: widget.isDarkMode ? const Color(0xFFB0B0B0) : const Color(0xFF6B7280),
+              color: widget.isDarkMode
+                  ? const Color(0xFFB0B0B0)
+                  : const Color(0xFF6B7280),
             ),
           ),
         ],
@@ -961,10 +1103,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
       margin: const EdgeInsets.only(left: 16, bottom: 8),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: widget.isDarkMode ? const Color(0xFF2C2C2C) : const Color(0xFFF8FAFC),
+        color: widget.isDarkMode
+            ? const Color(0xFF2C2C2C)
+            : const Color(0xFFF8FAFC),
         borderRadius: BorderRadius.circular(8),
         border: Border.all(
-          color: widget.isDarkMode ? const Color(0xFF3A3A3A) : const Color(0xFFE5E7EB),
+          color: widget.isDarkMode
+              ? const Color(0xFF3A3A3A)
+              : const Color(0xFFE5E7EB),
         ),
       ),
       child: Column(
@@ -991,10 +1137,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
       margin: const EdgeInsets.only(left: 16, bottom: 8),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: widget.isDarkMode ? const Color(0xFF2C2C2C) : const Color(0xFFF8FAFC),
+        color: widget.isDarkMode
+            ? const Color(0xFF2C2C2C)
+            : const Color(0xFFF8FAFC),
         borderRadius: BorderRadius.circular(8),
         border: Border.all(
-          color: widget.isDarkMode ? const Color(0xFF3A3A3A) : const Color(0xFFE5E7EB),
+          color: widget.isDarkMode
+              ? const Color(0xFF3A3A3A)
+              : const Color(0xFFE5E7EB),
         ),
       ),
       child: Column(
@@ -1024,7 +1174,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
           Icon(
             icon,
             size: 16,
-            color: widget.isDarkMode ? const Color(0xFFBB86FC) : const Color(0xFF3B82F6),
+            color: widget.isDarkMode
+                ? const Color(0xFFBB86FC)
+                : const Color(0xFF3B82F6),
           ),
           const SizedBox(width: 8),
           Expanded(
@@ -1035,14 +1187,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   label,
                   style: TextStyle(
                     fontWeight: FontWeight.w500,
-                    color: widget.isDarkMode ? Colors.white : const Color(0xFF0F172A),
+                    color: widget.isDarkMode
+                        ? Colors.white
+                        : const Color(0xFF0F172A),
                   ),
                 ),
                 Text(
                   value,
                   style: TextStyle(
                     fontSize: 12,
-                    color: widget.isDarkMode ? const Color(0xFFB0B0B0) : const Color(0xFF6B7280),
+                    color: widget.isDarkMode
+                        ? const Color(0xFFB0B0B0)
+                        : const Color(0xFF6B7280),
                   ),
                 ),
               ],
@@ -1059,10 +1215,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
       child: Row(
         children: [
           Icon(
-            isSelected ? Icons.radio_button_checked : Icons.radio_button_unchecked,
+            isSelected
+                ? Icons.radio_button_checked
+                : Icons.radio_button_unchecked,
             size: 16,
-            color: isSelected 
-                ? (widget.isDarkMode ? const Color(0xFFBB86FC) : const Color(0xFF3B82F6))
+            color: isSelected
+                ? (widget.isDarkMode
+                    ? const Color(0xFFBB86FC)
+                    : const Color(0xFF3B82F6))
                 : Colors.grey,
           ),
           const SizedBox(width: 8),
@@ -1086,7 +1246,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
           Icon(
             Icons.help_outline,
             size: 16,
-            color: widget.isDarkMode ? const Color(0xFFBB86FC) : const Color(0xFF3B82F6),
+            color: widget.isDarkMode
+                ? const Color(0xFFBB86FC)
+                : const Color(0xFF3B82F6),
           ),
           const SizedBox(width: 8),
           Expanded(
@@ -1097,14 +1259,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   title,
                   style: TextStyle(
                     fontWeight: FontWeight.w500,
-                    color: widget.isDarkMode ? Colors.white : const Color(0xFF0F172A),
+                    color: widget.isDarkMode
+                        ? Colors.white
+                        : const Color(0xFF0F172A),
                   ),
                 ),
                 Text(
                   description,
                   style: TextStyle(
                     fontSize: 12,
-                    color: widget.isDarkMode ? const Color(0xFFB0B0B0) : const Color(0xFF6B7280),
+                    color: widget.isDarkMode
+                        ? const Color(0xFFB0B0B0)
+                        : const Color(0xFF6B7280),
                   ),
                 ),
               ],
