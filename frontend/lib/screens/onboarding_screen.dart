@@ -18,13 +18,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     {
       "title": "Welcome to DroneOps",
       "subtitle": "Connecting remote communities with essential supplies and communication during emergencies.",
-      "image": "assets/images/onboarding/drone_landscape.jpg",
+      "image": "assets/images/onboarding/drone_landscape.jpeg",
       "buttonText": "Next"
     },
     {
       "title": "Rapid Response",
       "subtitle": "Swift delivery of essential medical supplies and communication devices to remote areas affected by disasters.",
-      "image": "assets/images/onboarding/drone_delivery.jpg",
+      "image": "assets/images/onboarding/drone_delivery.jpeg",
       "buttonText": "Next"
     },
     {
