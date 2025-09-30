@@ -9,7 +9,7 @@ SECRET_KEY = config('SECRET_KEY', default='django-insecure-your-secret-key-here'
 DEBUG = config('DEBUG', default=True, cast=bool)
 
 
-ALLOWED_HOSTS = ['sih-drone-app-2-109e.onrender.com']  # your Render URL
+ALLOWED_HOSTS = [''] 
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -25,7 +25,7 @@ INSTALLED_APPS = [
     'fleet_app',
     'report_app',
     'ai_chatbot',
-    'corsheaders'
+    
 ]
 
 MIDDLEWARE = [
@@ -37,7 +37,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware'
+   
 ]
 
 ROOT_URLCONF = 'drone_backend.urls'
