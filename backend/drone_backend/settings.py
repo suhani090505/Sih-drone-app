@@ -9,7 +9,7 @@ SECRET_KEY = config('SECRET_KEY', default='django-insecure-your-secret-key-here'
 DEBUG = config('DEBUG', default=True, cast=bool)
 
 
-ALLOWED_HOSTS = [''] 
+ALLOWED_HOSTS = ['*',"sih-drone-app-2-109e.onrender.com"] 
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
